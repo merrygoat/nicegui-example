@@ -17,5 +17,5 @@ def add_sample_data():
     if not people and not parties:
         sensible = Party.create(name="Sensible Party")
         silly = Party.create(name="Silly Party")
-        Candidate.create(first_name="Arthur", last_name="Smith", email="bob@internet.com", company=sensible.id)
-        Candidate.create(first_name="Jethro", last_name="Walrustitty", email="eric@internet.com", company=silly.id)
+        Candidate.create(first_name="Arthur", last_name="Smith", email="bob@internet.com", party=sensible)
+        Candidate.create(first_name="Jethro", last_name="Walrustitty", email="eric@internet.com", party=silly)

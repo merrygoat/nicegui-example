@@ -5,19 +5,23 @@ from nicegui_template import initialization
 import logging
 
 from nicegui_template.ui.candidates import UICandidates
+from nicegui_template.ui.parties import UIParties
 
 # This logging allows viewing of raw SQL queries in the console as they are made by peewee
 logger = logging.getLogger('peewee')
 logger.addHandler(logging.StreamHandler())
 logger.setLevel(logging.DEBUG)
 
-@ui.page('/')
 def main():
     initialization.initialize()
+    home()
+    app.on_exception(lambda e: ui.notify(f"Exception: {e}"))
+    ui.run()
 
+
+@ui.page('/')
+def home():
     UIMainForm()
-    # app.on_exception(lambda e: ui.notify(f"Exception: {e}"))
-    ui.run(reload=False)
 
 
 class UIMainForm:
@@ -32,9 +36,8 @@ class UIMainForm:
                 with ui.tab_panels(tabs, value=self.accounts_tab).props('vertical').classes('w-full h-full'):
                     with ui.tab_panel(self.accounts_tab):
                         self.account_details = UICandidates(self)
-                    # with ui.tab_panel(self.transactions_tab):
-                    #     pass
-                        # self.transactions = UIParties(self)
+                    with ui.tab_panel(self.transactions_tab):
+                        self.parties = UIParties(self)
 
 
 main()
