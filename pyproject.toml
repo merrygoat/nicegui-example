@@ -1,0 +1,12 @@
+[project]
+name = "sample-nicegui-project"
+version = "0.1.0"
+description = "A sample nicegui project"
+dynamic = ["dependencies"]
+
+[build-system]
+requires = ["setuptools >= 61.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.dynamic]
+dependencies = {file = ["requirements.txt"]}
