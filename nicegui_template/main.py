@@ -13,8 +13,7 @@ logger.addHandler(logging.StreamHandler())
 logger.setLevel(logging.DEBUG)
 
 def main():
-    initialization.initialize()
-    home()
+    app.on_startup(initialization.initialize)
     app.on_exception(lambda e: ui.notify(f"Exception: {e}"))
     ui.run()
 
